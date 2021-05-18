@@ -20,7 +20,37 @@ const TransactionDataAll = [
 
 // Add transactions to DOM list
 function addTransactionDOM(transaction) {
-  const deposit_item = document.createElement('li');
+
+  // Lines 24-51 Put in if-else statement, by me
+  var net_num = transaction.deposit - transaction.loan;
+
+  if (net_num > 0) {
+    
+    const deposit_item = document.createElement('li');
+
+    deposit_item.classList.add('plus');
+    deposit_item.innerHTML = `
+    ${transaction.customername}-${transaction.bank}  <span> $ ${
+      transaction.deposit - transaction.loan
+      }</span> 
+    `;
+
+    list.appendChild(deposit_item);
+
+  } else {
+    const loan_item = document.createElement('li');
+
+    loan_item.classList.add('minus');
+    loan_item.innerHTML = `
+    ${transaction.customername}-${transaction.bank} <span> -$ ${
+      transaction.deposit - transaction.loan
+      }</span> 
+    `;
+
+    list.appendChild(loan_item);
+  }
+
+/*  const deposit_item = document.createElement('li');
 
   deposit_item.classList.add('plus');
   deposit_item.innerHTML = `
@@ -40,7 +70,19 @@ function addTransactionDOM(transaction) {
   )}</span> 
   `;
 
-  list.appendChild(loan_item);
+  list.appendChild(loan_item); */
+
+/*  //lines 75-84 added in by me. This also works, but just cannot show RHS red/green vertical bars 
+  const net_item = document.createElement('li'); 
+
+  net_item.classList.add('net');
+  net_item.innerHTML = `
+  ${transaction.customername}-${transaction.bank}  <span> $ ${
+    transaction.deposit - transaction.loan
+    }</span>   
+  `;
+  list.appendChild(net_item); */
+
 }
 
 // Update the balance, deposit and loan
@@ -75,3 +117,5 @@ function filterTransaction(e) {
 
 init();
 form.addEventListener('submit', filterTransaction);
+
+
