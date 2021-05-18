@@ -132,6 +132,11 @@ input[type='number'] {
   border-right: 5px solid #c0392b;
 }
 
+/* .list li.net added by me */
+.list li.net {
+  border-right: 5px solid #861cef;
+}
+
 .delete-btn {
   cursor: pointer;
   background-color: #e74c3c;
